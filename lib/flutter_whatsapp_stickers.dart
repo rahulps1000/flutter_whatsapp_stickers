@@ -82,20 +82,12 @@ class WhatsAppStickers {
   /// [stickerPackName] The sticker pack name
   /// [listener] Sets up [MessageHandler] function for incoming events.
   void addStickerPack({
-    WhatsAppPackage packageName = WhatsAppPackage.Consumer,
+    String packageName = consumerWhatsAppPackageName,
     @required String? stickerPackIdentifier,
     @required String? stickerPackName,
     MessageHandler? listener,
   }) {
-    String packageString;
-    switch (packageName) {
-      case WhatsAppPackage.Consumer:
-        packageString = consumerWhatsAppPackageName;
-        break;
-      case WhatsAppPackage.Business:
-        packageString = businessWhatsAppPackageName;
-        break;
-    }
+    String packageString = packageName;
 
     _addStickerPackListener = listener;
     _channel.setMethodCallHandler(_handleMethod);
